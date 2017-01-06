@@ -1,0 +1,4 @@
+dotfirst1: 在集群上使用spark计算基于tfidf的首篇文档与其余所有300多万篇文档的相似度,并用Python利用matplotlib在服务器上绘制图像。
+dotfirst2: 在node2上单机计算基于word2vec的首篇文档与其余所有300多万篇文档的相似度(dotfirst.py)，将数据文件下载至自己电脑上(dotfirst.1.txt2/深度学习-part-00000.txt)，并在自己电脑用MATLAB绘制图像(plotdotfirst.m)
+
+因为MATLAB绘图更精致一些，所以平时测试时在服务器上用matplotlib绘图，最终展示才下载后用MATLAB绘图。
