@@ -47,14 +47,14 @@ remover.py所需要的停止词词典。
 将.kv文件转换为.nkv文件，其中每行对应原来的一个文本，是用逗号','隔开的3部分，第一部分是文本序号(0,1,2,...)，第二部分是文本原始路径，第三部分是文本内容。
 注：big2kv和kn2nkv不是必要的，但会对在spark中使用RDD有所帮助。
 
-[hbase/extract_1000.txt](https://github.com/georgethrax/dashujuxitong2016/blob/master/hbase/extract_1000.txt)
+[hbase/extract_1000.scala](https://github.com/georgethrax/dashujuxitong2016/blob/master/hbase/extract_1000.scala)
 每个分类抽取1000篇文章（from Hbase）
 
-[hbase/hbase_setup.txt](https://github.com/georgethrax/dashujuxitong2016/blob/master/hbase/hbase_setup.txt)
+[hbase/hbase_setup.scala](https://github.com/georgethrax/dashujuxitong2016/blob/master/hbase/hbase_setup.scala)
 Hbase设置与数据导入
 ###2.2 基于TFIDF的文本相似度
 
-[dotfirst/dotfirst1/spark-code/spark-code.txt](https://github.com/georgethrax/dashujuxitong2016/blob/master/dotfirst/dotfirst1/spark-code/spark-code.txt)
+[dotfirst/dotfirst1/spark-code/spark-code.scala](https://github.com/georgethrax/dashujuxitong2016/blob/master/dotfirst/dotfirst1/spark-code/spark-code.scala)
 在公司服务器集群上使用spark基于tfidf计算首篇文本与其余所有文本的相似度，并在服务器上用matplotlib绘图。代码、操作步骤都在该文件中。
 
 [dotfirst/dotfirst1/dotfirst.1.txt](https://github.com/georgethrax/dashujuxitong2016/blob/master/dotfirst/dotfirst1/dotfirst.1.txt)
