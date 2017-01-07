@@ -1,5 +1,7 @@
+/*
 从node1启动集群上的spark-shell
 sudo -u spark spark-shell --num-executors 4 
+*/
 
 //读取文件。.big.removed是已经分词和移除停止词后的，不含kv。
 val path = "hdfs:///data/20161002.big.removed"

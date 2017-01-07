@@ -1,4 +1,5 @@
-sbt相关/opt/cloudera/parcels/CDH-5.9.0-1.cdh5.9.0.p0.23/etc/hbase/conf.dist1. 设置HDFS的属性：dfs.replication = 1(初始为3，没有必要)
+/*
+1. sbt相关/opt/cloudera/parcels/CDH-5.9.0-1.cdh5.9.0.p0.23/etc/hbase/conf.dist1. 设置HDFS的属性：dfs.replication = 1(初始为3，没有必要)
 
 2. 增加内存，重启机器
 
@@ -43,6 +44,7 @@ sbt和maven都是将scala工程进行打包的方式，使用spark-submit执行�
 使用命令：sudo -u spark spark-shell  --master=yarn --num-executors 4  （其中--master yarn-client可以省略）
 
 参考文档：http://lecluster.delaurent.com/spark-on-hbase-with-spark-shell/
+*/
 
 import org.apache.hadoop.hbase.{HBaseCofiguration, HTableDescriptor}
 import org.apache.hadoop.hbase.client.{HBaseAdmin, Result}
@@ -52,6 +54,7 @@ val tableName = "t1"
 val hconf = HBaseConfiguration.create()
 val admin = new HBaseAdmin(hconf)
 admin.listTables
+/*
 报错：zookeeper Client Session 0x0 for server null
 发现在hbase的master（也就是node3）是成功的，如下：
 
@@ -64,6 +67,8 @@ Clipboard Image.png
 
 更正方法是增加一行代码，如下：
 
+*/
+
 import org.apache.hadoop.hbase.{HBaseConfiguration, HTableDescriptor}
 import org.apache.hadoop.hbase.client.{HBaseAdmin, Result}
 import org.apache.hadoop.hbase.io.ImmutableBytesWritable
@@ -73,11 +78,13 @@ val hconf = HBaseConfiguration.create()
 hconf.set("hbase.zookeeper.quorum", "node3:2181,node4:2181,node5:2181")
 val admin = new HBaseAdmin(hconf)
 admin.listTables
+/*
 6. spark-shell下遍历20161010的文件内容，输出：file_name,content,label
 
 6.1  scala读取文件名称
 
 一层遍历：
+*/
 
 import java.io.File
 def getListOfFiles(dir: String, depth: Int):List[File] = {
@@ -92,6 +99,8 @@ def getListOfFiles(dir: String, depth: Int):List[File] = {
 }
 //val files = getListOfFiles("/root/",2)
 val files = getListOfFiles("/data/20161002/",2)
+
+/*
 参考：http://alvinalexander.com/scala/how-to-list-files-in-directory-filter-names-scala
 
 7. Hbase行列设计，数据导入
@@ -100,6 +109,7 @@ val files = getListOfFiles("/data/20161002/",2)
 
 tablename：Text rowkey：label1_label2_文件ID；Column Family：‘feature’；cloumn：‘date’，‘content’，‘label1’，‘label2’
 7.2 表的创建：
+*/
 
 //  ~/mps/CreateTable.scala work on Spark-shell
 import org.apache.hadoop.hbase.util.Bytes
@@ -122,11 +132,14 @@ if (admin.tableExists(userTable)) {
 }
 admin.createTable(tableDescr)
 println("Done!")
+
+/*
 参考：https://gist.github.com/wuchong/95630f80966d07d7453b
 
 7.3 txt文件预处理
 
 遍历文件，并且把所有的行用“ ”连接起来
+*/
 
 import scala.util.matching.Regex
 for (file <- files){
@@ -141,8 +154,9 @@ for (file <- files){
     val pattern = new Regex("<image-\\d{1,3}>")
     val file_content1 = pattern replaceAllIn(file_content, "")//去除无用的</image>等字符串
 }
+/*
 总的代码（后续又加了正则表达式，）
-
+*/
 import org.apache.hadoop.hbase.util.Bytes
 import org.apache.hadoop.hbase.{HColumnDescriptor, HTableDescriptor, TableName, HBaseConfiguration}
 import org.apache.hadoop.hbase.client._

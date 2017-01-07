@@ -1,7 +1,8 @@
+/*
 执行环境：Spark-shell，命令：sudo -u spark spark-shell  --master=yarn --num-executors 4
 
 写入hdfs:///user/spark/extract_1000下，每个类一篇文档，每篇文章一行。
-
+*/
 
 import org.apache.hadoop.hbase.util.Bytes
 import org.apache.hadoop.hbase.{HColumnDescriptor, HTableDescriptor, TableName, HBaseConfiguration}
