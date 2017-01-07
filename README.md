@@ -34,7 +34,6 @@
 [dirwalk/cutbigtxt.py](https://github.com/georgethrax/dashujuxitong2016/blob/master/cutbigtxt.py)
 中文分词，将.big文件转换为.split文件，其中每行对应原来的一个文本，中文词与词之间用一个空格隔开，且去除了非中文字符。
 
-
 [dirwalk/remover.py](https://github.com/georgethrax/dashujuxitong2016/blob/master/remover.py)
 移除停止词程序。将已经做完中文分词的.split文件中出现在stop.txt中的词去除掉，输出.removed文件。
 
@@ -46,9 +45,13 @@ remover.py所需要的停止词词典。
 
 [dirwalk/kv2nkv.py](https://github.com/georgethrax/dashujuxitong2016/blob/master/kv2nkv.py)
 将.kv文件转换为.nkv文件，其中每行对应原来的一个文本，是用逗号','隔开的3部分，第一部分是文本序号(0,1,2,...)，第二部分是文本原始路径，第三部分是文本内容。
-
 注：big2kv和kn2nkv不是必要的，但会对在spark中使用RDD有所帮助。
 
+[hbase/extract_1000.txt](https://github.com/georgethrax/dashujuxitong2016/blob/master/hbase/extract_1000.txt)
+每个分类抽取1000篇文章（from Hbase）
+
+[hbase/hbase_setup.txt](https://github.com/georgethrax/dashujuxitong2016/blob/master/hbase/hbase_setup.txt)
+Hbase设置与数据导入
 ###2.2 基于TFIDF的文本相似度
 
 [dotfirst/dotfirst1/spark-code/spark-code.txt](https://github.com/georgethrax/dashujuxitong2016/blob/master/dotfirst/dotfirst1/spark-code/spark-code.txt)
